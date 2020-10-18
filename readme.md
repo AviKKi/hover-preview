@@ -1,6 +1,6 @@
 # Hover Preview
 
-A vanilla js library to show preview images on hover.
+A vanilla js library to show preview images on hover [see example](https://codepen.io/johjohan/pen/rNLLNJK).
 
 ## Getting started
 
