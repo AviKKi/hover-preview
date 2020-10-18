@@ -6,7 +6,7 @@ A vanilla js library to show preview images on hover.
 
 1. Add `hover-preview.min.js` to bottom of your body tag.
    ```js
-   <script defer src='hover-preview.min.js'></script>
+   <script defer src='https://raw.githubusercontent.com/AviKKi/hover-preview/main/dist/hover-preview.min.js'></script>
    ```
 1. Add class `hover-preview` to `img` tag that should have preview behaviour.
    ```html
