@@ -25,3 +25,6 @@ A vanilla js library to show preview images on hover.
 ```sh
 $ yarn build
 ```
+
+## Demo
+check the running example [here](https://hover-preview.surge.sh/)
