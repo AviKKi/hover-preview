@@ -1,4 +1,4 @@
-;(function () {
+(function () {
   const HOVER_DELAY = 70
   const PREVIEW_DURATION = 500
   const images = Array.from(document.querySelectorAll('.hover-preview'))
@@ -15,7 +15,7 @@
       if (this.el) this.el.setAttribute('src', this.poster)
       this.el = this.poster = this.index = this.images = null
     }
-  }
+  };
 
   const stopWatch = {
     previous: null,
@@ -45,14 +45,14 @@
       const setSrc = () => {
         hoveredImg.setSrc()
         previewImages()
-      }
+      };
       if ((ms > PREVIEW_DURATION) | skipDelay) {
         setSrc()
       } else {
         setTimeout(setSrc, PREVIEW_DURATION - ms)
       }
-    })
-  }
+    });
+  };
 
   const mouseEnterListener = e => {
     hoveredImg.el = e.target
@@ -62,7 +62,7 @@
 
     setTimeout(() => previewImages(true), HOVER_DELAY)
     hoveredImg.el.addEventListener('mouseleave', () => hoveredImg.reset())
-  }
+  };
 
   images.forEach(img => {
     img.addEventListener('mouseenter', mouseEnterListener)
