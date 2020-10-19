@@ -19,5 +19,5 @@ gulp.task('build', function () {
     uglify(),
     rename(renameJs),
     gulp.dest('dist')
-  );
-});
+  )
+})
