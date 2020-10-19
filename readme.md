@@ -29,3 +29,6 @@ $ yarn build
 
 ## Running Demo
 Check the Demo [here](https://nostalgic-boyd-d0a053.netlify.app/)
+
+## Example
+![preview](https://s8.gifyu.com/images/5f8db16a40fbc297233548.gif)
