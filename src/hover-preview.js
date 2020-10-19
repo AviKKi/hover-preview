@@ -3,6 +3,26 @@
   const PREVIEW_DURATION = 500
   const images = Array.from(document.querySelectorAll('.hover-preview'))
 
+  // singleton timeout object, only one timeout should be active at a time
+  const timeout = {
+    id: 0,
+    /**
+     * set a timeout
+     * @param {Function} callback
+     * @param {Number} time
+     */
+    set: function (callback, time) {
+      clearTimeout(this.id)
+      this.id = setTimeout(callback, time)
+    },
+    /**
+     * clear a timeout
+     */
+    reset: function () {
+      clearTimeout(this.id)
+    }
+  }
+
   const hoveredImg = {
     el: null,
     poster: null,
@@ -15,7 +35,7 @@
       if (this.el) this.el.setAttribute('src', this.poster)
       this.el = this.poster = this.index = this.images = null
     }
-  };
+  }
 
   const stopWatch = {
     previous: null,
@@ -45,14 +65,14 @@
       const setSrc = () => {
         hoveredImg.setSrc()
         previewImages()
-      };
+      }
       if ((ms > PREVIEW_DURATION) | skipDelay) {
         setSrc()
       } else {
-        setTimeout(setSrc, PREVIEW_DURATION - ms)
+        timeout.set(setSrc, PREVIEW_DURATION - ms)
       }
-    });
-  };
+    })
+  }
 
   const mouseEnterListener = e => {
     hoveredImg.el = e.target
@@ -60,9 +80,12 @@
     hoveredImg.index = -1
     hoveredImg.images = hoveredImg.el.getAttribute('data-preview').split('|')
 
-    setTimeout(() => previewImages(true), HOVER_DELAY)
-    hoveredImg.el.addEventListener('mouseleave', () => hoveredImg.reset())
-  };
+    timeout.set(() => previewImages(true), HOVER_DELAY)
+    hoveredImg.el.addEventListener('mouseleave', () => {
+      hoveredImg.reset()
+      timeout.reset()
+    })
+  }
 
   images.forEach(img => {
     img.addEventListener('mouseenter', mouseEnterListener)
