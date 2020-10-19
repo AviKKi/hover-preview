@@ -25,3 +25,7 @@ A vanilla js library to show preview images on hover.
 ```sh
 $ yarn build
 ```
+
+
+## Running Demo
+Check the Demo [here](https://nostalgic-boyd-d0a053.netlify.app/)
