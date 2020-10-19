@@ -1,0 +1,9 @@
+#body {
+  background-image: url("https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?cs=srgb&dl=pexels-anna-shvets-3683056.jpg&fm=jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hover-preview {
+  background-color: palevioletred;
+  border-radius: 50%;
+}
