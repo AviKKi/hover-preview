@@ -1,23 +1,23 @@
-var gulp = require('gulp')
-var uglify = require('gulp-uglify')
-var babel = require('gulp-babel')
-var rename = require('gulp-rename')
-var pipeline = require('readable-stream').pipeline
+var gulp = require("gulp");
+var uglify = require("gulp-uglify");
+var babel = require("gulp-babel");
+var rename = require("gulp-rename");
+var pipeline = require("readable-stream").pipeline;
 
 function renameJs (file) {
-  if (file.extname === '.js') {
-    file.basename = file.basename + '.min'
+  if (file.extname === ".js") {
+    file.basename = file.basename + ".min";
   }
 }
 
-gulp.task('build', function () {
+gulp.task("build", function () {
   return pipeline(
-    gulp.src('src/*.js'),
+    gulp.src("src/*.js"),
     babel({
-      presets: ['@babel/env']
+      presets: ["@babel/env"]
     }),
     uglify(),
     rename(renameJs),
-    gulp.dest('dist')
-  )
-})
+    gulp.dest("dist")
+  );
+});

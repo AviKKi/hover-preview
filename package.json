@@ -6,7 +6,8 @@
   "author": "AviKKi",
   "license": "MIT",
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "lint:fix": "eslint --fix --ext .js src"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
