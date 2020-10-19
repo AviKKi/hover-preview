@@ -1,7 +1,7 @@
 (function () {
   const HOVER_DELAY = 70;
   const PREVIEW_DURATION = 500;
-  const images = Array.from(document.querySelectorAll(".hover-preview"));
+  const images = Array.from(document.querySelectorAll('.hover-preview'));
 
   const hoveredImg = {
     el: null,
@@ -9,10 +9,10 @@
     index: null,
     images: null,
     setSrc: function () {
-      if (this.el) this.el.setAttribute("src", this.images[this.index]);
+      if (this.el) this.el.setAttribute('src', this.images[this.index]);
     },
     reset: function () {
-      if (this.el) this.el.setAttribute("src", this.poster);
+      if (this.el) this.el.setAttribute('src', this.poster);
       this.el = this.poster = this.index = this.images = null;
     }
   };
@@ -56,15 +56,15 @@
 
   const mouseEnterListener = e => {
     hoveredImg.el = e.target;
-    hoveredImg.poster = hoveredImg.el.getAttribute("src");
+    hoveredImg.poster = hoveredImg.el.getAttribute('src');
     hoveredImg.index = -1;
-    hoveredImg.images = hoveredImg.el.getAttribute("data-preview").split("|");
+    hoveredImg.images = hoveredImg.el.getAttribute('data-preview').split('|');
 
     setTimeout(() => previewImages(true), HOVER_DELAY);
-    hoveredImg.el.addEventListener("mouseleave", () => hoveredImg.reset());
+    hoveredImg.el.addEventListener('mouseleave', () => hoveredImg.reset());
   };
 
   images.forEach(img => {
-    img.addEventListener("mouseenter", mouseEnterListener);
+    img.addEventListener('mouseenter', mouseEnterListener);
   });
 })();
