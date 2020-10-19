@@ -6,7 +6,7 @@
   const hoveredImg = {
     el: null,
     poster: null,
-    index: null,
+    index: null, ANY
     images: null,
     setSrc: function () {
       if (this.el) this.el.setAttribute('src', this.images[this.index])
