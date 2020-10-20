@@ -1,7 +1,7 @@
 (function () {
   const HOVER_DELAY = 70
   const PREVIEW_DURATION = 500
-  const images = Array.from(document.querySelectorAll('.hover-preview'))
+  const images = Array.from(document.querySelectorAll('img.hover-preview'))
 
   // singleton timeout object, only one timeout should be active at a time
   const timeout = {
@@ -90,4 +90,46 @@
   images.forEach(img => {
     img.addEventListener('mouseenter', mouseEnterListener)
   })
+
+
+  const almover = () => {
+      let last_known_scroll_position = window.scrollY;
+      images.forEach(img => {
+        
+        if((last_known_scroll_position >= (parseInt(img.dataset.posy) - 10)) &&  (last_known_scroll_position <= (parseInt(img.dataset.posy)  + 10)))
+        {
+
+          hoveredImg.el = img
+          hoveredImg.poster = hoveredImg.el.getAttribute('src')
+          hoveredImg.index = -1
+          hoveredImg.images = hoveredImg.el.getAttribute('data-preview').split('|')
+
+          timeout.set(() => previewImages(true), HOVER_DELAY)
+          hoveredImg.el.addEventListener('mouseleave', () => {
+            hoveredImg.reset()
+            timeout.reset()
+          })
+          
+          //console.log(img.id);
+          //mouseEnterListener(img);
+          //console.log(`${img.id}, img position :${img.dataset.posy} , scroll positions: ${last_known_scroll_position}`);
+        }
+      })
+  }
+
+  const setPosYImages = () => {
+    images.forEach(img => {
+      img.dataset.posy = img.getBoundingClientRect().y;
+    })
+  }
+
+    window.addEventListener('scroll', function(){
+      almover();
+    })
+
+    window.addEventListener('load', function(){
+      setPosYImages();
+    })
+
+
 })()
