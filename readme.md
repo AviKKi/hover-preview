@@ -2,6 +2,12 @@
 
 A vanilla js library to show preview images on hover.
 
+Check the Demo [here](https://nostalgic-boyd-d0a053.netlify.app/)
+
+![preview](https://s8.gifyu.com/images/5f8db16a40fbc297233548.gif)
+
+
+
 ## Getting started
 
 1. Add `hover-preview.min.js` to bottom of your body tag.
@@ -27,8 +33,4 @@ $ yarn build
 ```
 
 
-## Running Demo
-Check the Demo [here](https://nostalgic-boyd-d0a053.netlify.app/)
 
-## Example
-![preview](https://s8.gifyu.com/images/5f8db16a40fbc297233548.gif)
