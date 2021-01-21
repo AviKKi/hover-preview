@@ -81,13 +81,15 @@
     hoveredImg.images = hoveredImg.el.getAttribute('data-preview').split('|')
 
     timeout.set(() => previewImages(true), HOVER_DELAY)
-    hoveredImg.el.addEventListener('mouseleave', () => {
-      hoveredImg.reset()
-      timeout.reset()
-    })
+  }
+
+  const mouseLeaveListener = () => {
+    hoveredImg.reset()
+    timeout.reset()
   }
 
   images.forEach(img => {
     img.addEventListener('mouseenter', mouseEnterListener)
+    img.addEventListener('mouseleave', mouseLeaveListener)
   })
 })()
