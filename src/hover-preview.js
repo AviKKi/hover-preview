@@ -40,27 +40,37 @@
   const stopWatch = {
     previous: null,
     start: function () {
-      this.previous = new Date()
+      this.previous = Date.now()
     },
     stop: function () {
-      const diff = this.previous ? new Date() - this.previous : 0
+      const diff = this.previous ? Date.now() - this.previous : 0
       this.previous = null
       return diff
     }
   }
 
-  function prefetchImage (url, callback) {
-    if (!url) return
-    const img = new Image()
-    img.src = url
-    if (callback) img.onload = callback
+  const prefetchImage = (url) => {
+    if (!url)
+      return Promise.reject(new Error('Empty url'))
+
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = () => {
+        resolve(url)
+      }
+      img.onerror = () => {
+        reject(new Error(`There is an error on loading image ${url}`))
+      }
+      img.src = url
+    })
   }
 
   const previewImages = skipDelay => {
     if (!hoveredImg.el) return
     stopWatch.start()
     hoveredImg.index = (hoveredImg.index + 1) % hoveredImg.images.length
-    prefetchImage(hoveredImg.images[hoveredImg.index], function () {
+    prefetchImage(hoveredImg.images[hoveredImg.index])
+    .then(() => {
       const ms = stopWatch.stop()
       const setSrc = () => {
         hoveredImg.setSrc()
@@ -71,6 +81,9 @@
       } else {
         timeout.set(setSrc, PREVIEW_DURATION - ms)
       }
+    })
+    .catch(() => {
+      previewImages()
     })
   }
 
